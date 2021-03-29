@@ -65,12 +65,7 @@ std::unordered_set<int> Ransac(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, int ma
 {
 	std::unordered_set<int> inliersResult;
 	srand(time(NULL));
-	//pcl::PointCloud<pcl::PointXYZ>::Ptr p1;
-	//pcl::PointCloud<pcl::PointXYZ>::Ptr p2;
-	//pcl::PointCloud<pcl::PointXYZ>::Ptr p3;
 	
-	// TODO: Fill in this function
-
 	// For max iterations 
 	while(maxIterations--)
 	{
@@ -118,7 +113,6 @@ std::unordered_set<int> Ransac(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, int ma
 
 		if(inliers.size()>inliersResult.size())
 			inliersResult = inliers;
-
 
 	}
 
