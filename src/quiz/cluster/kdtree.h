@@ -56,7 +56,6 @@ struct KdTree
 				std::sqrt(std::pow(node->point[0] - target[0], 2) +	std::pow(node->point[1] - target[1], 2)) <= distanceTol) 
 			{
 				ids.push_back(node->id);
-				cout<<"hej"<<endl;
 			}
 			if ((target[depth % 2] - distanceTol) < node->point[depth % 2])
 				searchHelper(target, node->left, depth + 1, distanceTol, ids);
