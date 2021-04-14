@@ -45,7 +45,7 @@ typename pcl::PointCloud<PointT>::Ptr ProcessPointClouds<PointT>::FilterCloud(ty
 
     pcl::CropBox<PointT> roof(true);
     roof.setMin(Eigen::Vector4f(-1.5, -1.7, -1, 1));
-    roof.setMax(Eigen::Vector4f(2.6, 1.7, -4, 1));
+    roof.setMax(Eigen::Vector4f(2.6, 1.7, 4, 1));
     roof.setInputCloud(cloud_region);
     roof.filter(indices);
 
@@ -97,7 +97,7 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
 	
     pcl::PointIndices::Ptr inliersSet{new pcl::PointIndices};
     std::unordered_set<int> inliersResult;
-	srand(time(NULL));
+	//srand(time(NULL));
 	
 	// For max iterations 
 	while(maxIterations--)
@@ -131,16 +131,16 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
 			if(inliers.count(index)>0)
 				continue;
 
-			pcl::PointXYZ point = cloud->points[index];
+			PointT point = cloud->points[index];
 			float x4 = point.x;
 			float y4 = point.y;
 			float z4 = point.z;
 
 			// Measure distance between every point and plane
-			float d = fabs(a * x4 + b * y4 + c * z4 + d)/sqrt(a * a + b * b + c * c);
+			float dist = fabs(a * x4 + b * y4 + c * z4 + d)/sqrt(a * a + b * b + c * c);
 			
 			// If distance is smaller than threshold count it as inlier
-			if (d <= distanceThreshold)
+			if (dist <= distanceThreshold)
 				inliers.insert(index);
 		}
 
