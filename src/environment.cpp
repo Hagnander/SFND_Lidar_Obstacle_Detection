@@ -78,7 +78,7 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer, ProcessPointCloud
 
 
 //setAngle: SWITCH CAMERA ANGLE {XY, TopDown, Side, FPS}
-void initCamera(CameraAngle setAngle, pcl::visualization::PCLVisualizer::Ptr& viewer)
+void initCamera(CameraAngle setAngle, pcl::visualization::PCLVisualizer::Ptr& viewer )
 {
     viewer->setBackgroundColor (0, 0, 0);
     // set camera position and angle
